@@ -6,16 +6,19 @@ Dieses Script wurde erstellt um Govee Leuchten mit einem Loxone Miniserver zu st
 - Govee Leuchte die mit lokalen API Zugriff funktioniert (kompatible Geräte unter https://app-h5.govee.com/user-manual/wlan-guide)
 
 ## Kurzanleitung
-- In der Govee Home App die lokale API aktivieren (siehe ttps://app-h5.govee.com/user-manual/wlan-guide)   
+- In der Govee Home App die lokale API aktivieren (siehe https://app-h5.govee.com/user-manual/wlan-guide)   
 - Danach im Router oder einen LAN-Scanner die IP-Adresse der Govee Leuchte herausfinden.  
 - In der Loxone Config einen Programm Baustein einfügen und das Script hinein kopieren.
-- Im Script die IP-Adresse anpassen auf die der eigenen Govee Leuchte `char *IP_ADDRESS = "192.168.1.146";`
+- Im Script die IP-Adresse anpassen auf die der eigenen Govee Leuchte `char *IP_ADDRESS = "IP-der-Govee-Leuchte";`
 - Der Port 4003 muss normalerweise nicht geändert werden.
 - Baustein Lichtsteuerung von LC1 auf I2 verbinden.
 - Im Lichtbaustein unter Lichtkreise den LC1 auf Typ RGB setzen.
 - Danach nach belieben Stimmungen erstellen (oder später in der App)
 - In den Loxone Miniserver speichern und testen.
 
+ ![Screenshot Lichtsteuerung](Screenshots/loxone_govee_example_1.png) 
+ ![Screenshot Lichtkreise](Screenshots/loxone_govee_lichtkreise_1.png) 
+ 
 ## Beschreibung
 ### Eingänge
 I1 = On/Off  
@@ -29,12 +32,16 @@ O2 = RGB Wert
 O3 = Dimmwert  
 Etxt = Error Text  
 
+&nbsp;  
 ## Alternative Möglichkeit über Virtuellen Ausgang (ohne Script)
 Möchtest du lediglich die Govee LED ein- und ausschalten können. Dann läßt sich das auch ganz einfach über einen Virtuellen Ausgang einrichten.
 
-- API wie oben beschrieben in der Govee APP aktivieren
+- API wie oben beschrieben in der Govee APP aktivieren.
 - In der Loxone Config einen Virtuellen Ausgang erstellen.
     - Als Adresse eintragen: `/dev/udp/IP-der-Govee-Leuchte/4003/`
-- Danach einen Virtueller Ausgang Befehl erstellen
+- Danach einen Virtueller Ausgang Befehl erstellen.
     - Befehl bei EIN: `{ "msg": { "cmd": "turn", "data":{"value": 1 }}}`
     - Befehl bei AUS: `{ "msg": { "cmd": "turn", "data":{"value": 0 }}}`
+
+ ![Screenshot Virtueller Ausgang](Screenshots/loxone_govee_vo_1.png)
+ ![Screenshot Virtueller Ausgang Befehl](Screenshots/loxone_govee_vo_2.png)
